@@ -36,7 +36,7 @@ const projects = [
     date: "2023–24 / Quest & PC",
     metric: "Enterprise SDK",
     image: "graspxr.png",
-    problem: "Enterprise training platform needed to scale to 2000+ users without code changes per scenario",
+    problem: "Enterprise training platform needed to scale to 2000+ users without per-scenario code changes",
     solution: [
       "Refactored Blueprints into a modular plugin-based SDK architecture",
       "DLC system for downloadable scenarios to reduce install size",
@@ -75,27 +75,102 @@ const projects = [
   }
 ];
 
-// Each card sticks 14px lower than the previous so you can see the stack building
 const STACK_OFFSET = 14;
-const TOP_PADDING = 88;
+const TOP_PADDING = 72;
 
 export default function Projects() {
   return (
     <section id="projects" className="bg-background relative">
-      {/* Section header — not sticky, scrolls away */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-28 pb-20">
+      {/* Section header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-20 sm:pt-28 pb-12 sm:pb-20">
         <FadeIn>
-          <span className="text-primary font-mono text-sm uppercase font-bold tracking-widest block mb-4">
+          <span className="text-primary font-mono text-xs sm:text-sm uppercase font-bold tracking-widest block mb-3 sm:mb-4">
             Featured Projects
           </span>
-          <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
             Built, shipped, and proven in production.
           </h2>
         </FadeIn>
       </div>
 
-      {/* Sticky stack — height = scroll runway per card */}
-      <div style={{ height: `${projects.length * 70}vh` }}>
+      {/* 
+        Desktop: sticky stack effect
+        Mobile: normal vertical list (sticky doesn't work well in small viewports)
+      */}
+
+      {/* Mobile layout — plain vertical stack */}
+      <div className="lg:hidden px-4 sm:px-6 max-w-7xl mx-auto flex flex-col gap-6 pb-16">
+        {projects.map((project, i) => (
+          <div key={i} className="bg-card border border-card-border rounded-2xl overflow-hidden shadow-xl">
+            {/* Image */}
+            <div className="relative bg-[#0f0f0f] h-48 sm:h-60 overflow-hidden">
+              <img
+                src={`${import.meta.env.BASE_URL}images/${project.image}`}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover opacity-60"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent opacity-70" />
+              <div className="absolute bottom-3 right-3 font-mono text-[10px] text-card-foreground/30">
+                {String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 flex flex-col gap-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-md">
+                  {project.role}
+                </span>
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                  {project.date}
+                </span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-black text-card-foreground font-display leading-tight">
+                {project.title}
+              </h3>
+
+              <div className="inline-flex items-center w-fit bg-[#161616] border border-[#2a2a2a] rounded-full px-4 py-1.5 gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                <span className="text-card-foreground font-semibold text-sm">{project.metric}</span>
+              </div>
+
+              <div className="space-y-3 text-sm">
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1">Problem</span>
+                  <p className="text-card-foreground/85 leading-relaxed">{project.problem}</p>
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1">Solution</span>
+                  <ul className="space-y-1">
+                    {project.solution.map((item, idx) => (
+                      <li key={idx} className="flex gap-2 text-card-foreground/85">
+                        <span className="text-primary flex-shrink-0">›</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1">Outcome</span>
+                  <p className="text-card-foreground font-medium leading-relaxed">{project.outcome}</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-card-border">
+                {project.tags.map(tag => (
+                  <span key={tag} className="font-mono text-[11px] text-card-foreground/60 px-2.5 py-1 bg-[#161616] border border-[#2a2a2a] rounded-md">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop sticky stack */}
+      <div className="hidden lg:block" style={{ height: `${projects.length * 70}vh` }}>
         {projects.map((project, i) => (
           <div
             key={i}
@@ -106,12 +181,9 @@ export default function Projects() {
             }}
             className="px-6 md:px-12 max-w-7xl mx-auto"
           >
-            <div className="group bg-card border border-card-border rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
-
-              {/* ── Content ── */}
-              <div className="p-8 md:p-12 lg:w-[55%] flex flex-col justify-center gap-6 order-2 lg:order-1">
-
-                {/* Meta row */}
+            <div className="group bg-card border border-card-border rounded-2xl overflow-hidden shadow-2xl flex flex-row">
+              {/* Content */}
+              <div className="p-10 xl:p-12 w-[55%] flex flex-col justify-center gap-5">
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-md">
                     {project.role}
@@ -121,29 +193,26 @@ export default function Projects() {
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-3xl md:text-4xl font-black text-card-foreground font-display leading-tight">
+                <h3 className="text-3xl xl:text-4xl font-black text-card-foreground font-display leading-tight">
                   {project.title}
                 </h3>
 
-                {/* Metric pill */}
                 <div className="inline-flex items-center w-fit bg-[#161616] border border-[#2a2a2a] rounded-full px-5 py-2 gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                   <span className="text-card-foreground font-semibold text-sm tracking-wide">{project.metric}</span>
                 </div>
 
-                {/* P/S/O */}
-                <div className="space-y-4 text-[0.875rem] leading-relaxed">
+                <div className="space-y-3.5 text-sm leading-relaxed">
                   <div>
                     <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1.5">Problem</span>
                     <p className="text-card-foreground/85">{project.problem}</p>
                   </div>
                   <div>
                     <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1.5">Solution</span>
-                    <ul className="space-y-1 pl-0">
+                    <ul className="space-y-1">
                       {project.solution.map((item, idx) => (
                         <li key={idx} className="flex gap-2 text-card-foreground/85">
-                          <span className="text-primary mt-0.5 flex-shrink-0">›</span>
+                          <span className="text-primary flex-shrink-0 mt-0.5">›</span>
                           {item}
                         </li>
                       ))}
@@ -155,8 +224,7 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 pt-5 border-t border-card-border">
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-card-border">
                   {project.tags.map(tag => (
                     <span key={tag} className="font-mono text-[11px] text-card-foreground/60 px-3 py-1 bg-[#161616] border border-[#2a2a2a] rounded-md">
                       {tag}
@@ -165,28 +233,24 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* ── Image ── */}
-              <div className="lg:w-[45%] relative bg-[#0f0f0f] overflow-hidden order-1 lg:order-2 border-b lg:border-b-0 lg:border-l border-card-border min-h-[240px] lg:min-h-[460px]">
+              {/* Image */}
+              <div className="w-[45%] relative bg-[#0f0f0f] overflow-hidden border-l border-card-border min-h-[440px]">
                 <img
                   src={`${import.meta.env.BASE_URL}images/${project.image}`}
                   alt={project.title}
                   className="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:opacity-80 transition-all duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-[#0f0f0f] via-[#0f0f0f]/40 to-transparent" />
-
-                {/* Counter */}
+                <div className="absolute inset-0 bg-gradient-to-l from-[#0f0f0f] via-[#0f0f0f]/30 to-transparent" />
                 <div className="absolute bottom-5 right-5 font-mono text-xs text-card-foreground/30 tabular-nums">
                   {String(i + 1).padStart(2, "0")} <span className="text-card-foreground/15">/</span> {String(projects.length).padStart(2, "0")}
                 </div>
               </div>
-
             </div>
           </div>
         ))}
       </div>
 
-      {/* Generous breathing room before next section */}
-      <div className="h-48" />
+      <div className="hidden lg:block h-40" />
     </section>
   );
 }
