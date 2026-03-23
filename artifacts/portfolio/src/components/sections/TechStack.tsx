@@ -26,7 +26,7 @@ const categories = [
 
 export default function TechStack() {
   return (
-    <section id="skills" className="py-32 bg-background relative border-t border-border">
+    <section id="skills" className="pt-40 pb-32 bg-background relative border-t-2 border-border/60">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <FadeIn>
           <div className="mb-16">

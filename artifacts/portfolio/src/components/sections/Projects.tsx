@@ -75,27 +75,27 @@ const projects = [
   }
 ];
 
-const STACK_OFFSET = 10; // px each card peeks above the previous
-const TOP_PADDING = 80;  // initial top offset in px
+// Each card sticks 14px lower than the previous so you can see the stack building
+const STACK_OFFSET = 14;
+const TOP_PADDING = 88;
 
 export default function Projects() {
   return (
     <section id="projects" className="bg-background relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-24 pb-0">
+      {/* Section header — not sticky, scrolls away */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-28 pb-20">
         <FadeIn>
-          <div className="mb-16">
-            <span className="text-primary font-mono text-sm uppercase font-bold tracking-widest block mb-3">
-              Featured Projects
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
-              Built, shipped, and proven in production.
-            </h2>
-          </div>
+          <span className="text-primary font-mono text-sm uppercase font-bold tracking-widest block mb-4">
+            Featured Projects
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
+            Built, shipped, and proven in production.
+          </h2>
         </FadeIn>
       </div>
 
-      {/* Sticky stack container — section height drives scroll distance */}
-      <div style={{ height: `${projects.length * 55}vh` }}>
+      {/* Sticky stack — height = scroll runway per card */}
+      <div style={{ height: `${projects.length * 70}vh` }}>
         {projects.map((project, i) => (
           <div
             key={i}
@@ -107,75 +107,86 @@ export default function Projects() {
             className="px-6 md:px-12 max-w-7xl mx-auto"
           >
             <div className="group bg-card border border-card-border rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
-              {/* Content Side */}
-              <div className="p-7 md:p-10 lg:w-1/2 flex flex-col justify-center order-2 lg:order-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-3 py-1 rounded">
+
+              {/* ── Content ── */}
+              <div className="p-8 md:p-12 lg:w-[55%] flex flex-col justify-center gap-6 order-2 lg:order-1">
+
+                {/* Meta row */}
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-md">
                     {project.role}
                   </span>
-                  <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
                     {project.date}
                   </span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold text-card-foreground mb-4 font-display">
+                {/* Title */}
+                <h3 className="text-3xl md:text-4xl font-black text-card-foreground font-display leading-tight">
                   {project.title}
                 </h3>
 
-                <div className="inline-flex items-center w-fit bg-[#1A1A1A] border border-[#333] rounded-full px-4 py-1.5 mb-6">
-                  <span className="text-primary font-bold mr-2">&rarr;</span>
-                  <span className="text-card-foreground font-medium text-sm">{project.metric}</span>
+                {/* Metric pill */}
+                <div className="inline-flex items-center w-fit bg-[#161616] border border-[#2a2a2a] rounded-full px-5 py-2 gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                  <span className="text-card-foreground font-semibold text-sm tracking-wide">{project.metric}</span>
                 </div>
 
-                <div className="space-y-3 text-sm">
+                {/* P/S/O */}
+                <div className="space-y-4 text-[0.875rem] leading-relaxed">
                   <div>
-                    <span className="text-muted-foreground font-mono uppercase tracking-wider text-xs block mb-1">Problem</span>
-                    <p className="text-card-foreground/90 leading-relaxed">{project.problem}</p>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1.5">Problem</span>
+                    <p className="text-card-foreground/85">{project.problem}</p>
                   </div>
                   <div>
-                    <span className="text-muted-foreground font-mono uppercase tracking-wider text-xs block mb-1">Solution</span>
-                    <ul className="list-disc pl-4 text-card-foreground/90 space-y-1 marker:text-[#444]">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1.5">Solution</span>
+                    <ul className="space-y-1 pl-0">
                       {project.solution.map((item, idx) => (
-                        <li key={idx} className="leading-relaxed">{item}</li>
+                        <li key={idx} className="flex gap-2 text-card-foreground/85">
+                          <span className="text-primary mt-0.5 flex-shrink-0">›</span>
+                          {item}
+                        </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <span className="text-muted-foreground font-mono uppercase tracking-wider text-xs block mb-1">Outcome</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground block mb-1.5">Outcome</span>
                     <p className="text-card-foreground font-medium">{project.outcome}</p>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mt-6 pt-5 border-t border-card-border">
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 pt-5 border-t border-card-border">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-card-foreground/70 font-mono text-xs font-medium px-2.5 py-1 bg-[#1A1A1A] border border-[#333] rounded">
+                    <span key={tag} className="font-mono text-[11px] text-card-foreground/60 px-3 py-1 bg-[#161616] border border-[#2a2a2a] rounded-md">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Image Side */}
-              <div className="lg:w-1/2 relative bg-[#151515] overflow-hidden order-1 lg:order-2 border-b lg:border-b-0 lg:border-l border-card-border min-h-[220px] lg:min-h-[400px]">
+              {/* ── Image ── */}
+              <div className="lg:w-[45%] relative bg-[#0f0f0f] overflow-hidden order-1 lg:order-2 border-b lg:border-b-0 lg:border-l border-card-border min-h-[240px] lg:min-h-[460px]">
                 <img
                   src={`${import.meta.env.BASE_URL}images/${project.image}`}
                   alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-700"
+                  className="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:opacity-80 transition-all duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-card to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-[#0f0f0f] via-[#0f0f0f]/40 to-transparent" />
 
-                {/* Project number badge */}
-                <div className="absolute top-4 right-4 font-mono text-xs text-card-foreground/40 bg-card/60 backdrop-blur-sm px-2.5 py-1 rounded border border-card-border">
-                  {String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                {/* Counter */}
+                <div className="absolute bottom-5 right-5 font-mono text-xs text-card-foreground/30 tabular-nums">
+                  {String(i + 1).padStart(2, "0")} <span className="text-card-foreground/15">/</span> {String(projects.length).padStart(2, "0")}
                 </div>
               </div>
+
             </div>
           </div>
         ))}
       </div>
 
-      {/* Bottom padding after the stack */}
-      <div className="h-24" />
+      {/* Generous breathing room before next section */}
+      <div className="h-48" />
     </section>
   );
 }
