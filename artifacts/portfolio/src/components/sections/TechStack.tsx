@@ -1,67 +1,56 @@
 import { FadeIn } from "@/components/ui/FadeIn";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Gamepad2, Code, Zap, Glasses, Activity, GitBranch } from "lucide-react";
+import { Blocks, Headset, FileCode2, Server } from "lucide-react";
 
 const categories = [
   {
-    name: "UE5 Core",
-    icon: <Gamepad2 size={24} />,
-    skills: ["Blueprint Visual Scripting", "Gameplay Framework", "Behavior Trees", "Data Tables", "Animation Blueprints"]
+    name: "Core Dev",
+    icon: <Blocks className="text-primary" size={32} />,
+    skills: ["Blueprint Architecture", "Gameplay Framework", "Behavior Trees", "Actionable Elements", "UMG UI", "Data Tables"]
+  },
+  {
+    name: "XR Delivery",
+    icon: <Headset className="text-accent" size={32} />,
+    skills: ["Meta Quest 2/3", "OpenXR Hand Tracking", "Controller / Dual Input", "Unreal Insights"]
   },
   {
     name: "C++ & Tooling",
-    icon: <Code size={24} />,
-    skills: ["Custom Editor Plugins", "Utility Functions", "DataTable-driven Properties", "Core System Extension"]
+    icon: <FileCode2 className="text-primary" size={32} />,
+    skills: ["Editor Plugins", "DataTable Driven", "Editor Panel Extensions", "A/B Tester Integration", "Utility Modules"]
   },
   {
-    name: "VFX & Physics",
-    icon: <Zap size={24} />,
-    skills: ["Niagara Particle Systems", "Chaos Physics", "Destruction", "Collision Logic"]
-  },
-  {
-    name: "VR / XR",
-    icon: <Glasses size={24} />,
-    skills: ["Meta Quest 2/3", "Meta XR SDK", "OpenXR Hand Tracking", "PC VR Integration"]
-  },
-  {
-    name: "Performance",
-    icon: <Activity size={24} />,
-    skills: ["Unreal Insights", "GPU Profiler", "Draw Call Budgeting", "LOD Authoring", "RenderDoc"]
-  },
-  {
-    name: "Pipeline & Tools",
-    icon: <GitBranch size={24} />,
-    skills: ["Git", "Perforce", "Plastic SCM", "Trello", "Agile Leadership"]
+    name: "Back-End & APIs",
+    icon: <Server className="text-accent" size={32} />,
+    skills: ["Node.js", "HTTP / REST APIs", "Web Portal Integration", "Web Dashboards", "JSON Runtime Config"]
   }
 ];
 
 export default function TechStack() {
   return (
-    <section id="skills" className="py-24 bg-background">
+    <section id="skills" className="py-32 bg-card/50 relative border-t border-border/30">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <SectionHeader title="Technical Arsenal" />
+        <FadeIn>
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-16 tracking-tight">
+            Technical breadth with a clear XR center.
+          </h2>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
           {categories.map((cat, i) => (
             <FadeIn key={i} delay={i * 0.1}>
-              <div className="bg-card border border-border p-8 rounded-2xl h-full shadow-lg">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 bg-primary/10 text-primary rounded-xl border border-primary/20">
-                    {cat.icon}
-                  </div>
-                  <h3 className="text-xl font-bold font-display text-foreground">{cat.name}</h3>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-4 border-b border-border/50 pb-4">
+                  {cat.icon}
+                  <h3 className="text-2xl font-bold text-foreground">{cat.name}</h3>
                 </div>
                 
-                <div className="flex flex-wrap gap-2.5">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                   {cat.skills.map(skill => (
-                    <span 
-                      key={skill} 
-                      className="px-3 py-1.5 bg-background border border-border text-muted-foreground text-sm font-medium rounded-lg hover:border-primary/50 hover:text-foreground transition-colors cursor-default"
-                    >
+                    <li key={skill} className="flex items-center gap-2 text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary/50"></span>
                       {skill}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             </FadeIn>
           ))}
