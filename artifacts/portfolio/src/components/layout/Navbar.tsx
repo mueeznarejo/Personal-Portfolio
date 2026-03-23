@@ -1,48 +1,38 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
     { name: "Work", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" }
+    { name: "Experience", href: "#experience" },
+    { name: "Contact", href: "#contact" }
   ];
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border/50 py-4" : "bg-transparent py-6"
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border py-4 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        <a href="#" className="font-bold text-xl tracking-tight text-foreground">
-          Mueez <span className="text-muted-foreground">Narejo</span>
+        <a href="#" className="font-display font-bold text-2xl tracking-tight text-foreground flex items-center gap-1.5">
+          Mueez <span className="text-primary">Narejo</span>
         </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
+          {links.slice(0, 3).map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
             >
               {link.name}
             </a>
           ))}
           <a 
             href="#contact"
-            className="text-sm font-bold text-primary hover:text-primary/80 transition-colors"
+            className="text-sm font-semibold bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
           >
             Let's Talk
           </a>
@@ -61,10 +51,10 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-card border-b border-border"
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg"
           >
             <div className="px-6 py-6 flex flex-col gap-6">
               {links.map((link) => (
@@ -77,13 +67,6 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <a 
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-bold text-primary"
-              >
-                Let's Talk
-              </a>
             </div>
           </motion.div>
         )}

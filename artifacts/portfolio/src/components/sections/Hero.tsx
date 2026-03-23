@@ -1,96 +1,92 @@
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Download, Linkedin } from "lucide-react";
+import { Download, MapPin, Mail } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-24 pb-12 overflow-hidden bg-background bg-grid-pattern">
-      <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/90 to-background pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full flex flex-col items-start mt-12 md:mt-24">
+    <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-16 overflow-hidden bg-background">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full flex flex-col">
         
         <div className="w-full flex flex-col lg:flex-row gap-16 lg:items-center justify-between">
-          <div className="max-w-3xl flex-1">
+          <div className="lg:w-2/3 flex-1">
             <FadeIn delay={0.1}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-border shadow-sm text-foreground text-sm font-medium mb-8">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
                 </span>
                 Available for work
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.05] tracking-tight mb-8 text-foreground">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6 text-foreground font-display">
                 I ship Unreal products for games, XR, and tooling.
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
                 From Quest combat systems to enterprise training products and editor tooling. I focus on architecture that feels clean in development and reliable in production.
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.4} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-16">
+            <FadeIn delay={0.4} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
               <a 
                 href="mailto:mueez.narejo112@gmail.com" 
-                className="px-8 py-4 rounded-md bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2 w-full sm:w-auto text-center"
+                className="px-8 py-3.5 rounded-lg bg-primary text-white font-semibold text-base hover:bg-primary/90 transition-all flex items-center justify-center gap-2 w-full sm:w-auto text-center shadow-sm"
               >
-                <Download size={20} />
-                Download CV
+                Download CV <Download size={18} />
+              </a>
+              <a 
+                href="#projects" 
+                className="px-8 py-3.5 rounded-lg bg-transparent border border-border text-foreground font-semibold text-base hover:bg-white hover:shadow-sm transition-all flex items-center justify-center gap-2 w-full sm:w-auto text-center"
+              >
+                View Work
               </a>
               <a 
                 href="https://linkedin.com/in/mueeznarejo" 
                 target="_blank"
                 rel="noreferrer"
-                className="px-8 py-4 rounded-md bg-transparent border border-border text-foreground font-bold text-lg hover:bg-muted hover:border-muted-foreground/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto text-center"
+                className="px-8 py-3.5 rounded-lg bg-transparent text-muted-foreground font-semibold text-base hover:text-foreground transition-all flex items-center justify-center w-full sm:w-auto text-center"
               >
-                <Linkedin size={20} />
                 LinkedIn
               </a>
-              <a 
-                href="#projects" 
-                className="px-8 py-4 rounded-md bg-transparent text-muted-foreground font-bold text-lg hover:text-foreground transition-all flex items-center justify-center gap-2 w-full sm:w-auto text-center lg:ml-4"
-              >
-                View Work
-              </a>
+            </FadeIn>
+            
+            <FadeIn delay={0.5}>
+              <div className="flex items-center gap-6 text-sm text-muted-foreground font-medium">
+                <span className="flex items-center gap-2"><MapPin size={16} /> Hyderabad, Pakistan</span>
+                <span className="flex items-center gap-2"><Mail size={16} /> mueez.narejo112@gmail.com</span>
+              </div>
             </FadeIn>
           </div>
           
-          <FadeIn delay={0.5} className="flex-shrink-0 flex flex-col items-end">
-             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border border-border/50 bg-card overflow-hidden flex items-center justify-center shadow-2xl shadow-primary/5 mb-6">
-                {/* Fallback pattern for profile photo since specific path isn't given */}
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,transparent_70%)]" />
-                <h2 className="text-5xl font-black text-muted/30 tracking-tighter">MN</h2>
-             </div>
-             <div className="text-right">
-               <h2 className="text-3xl font-light text-muted-foreground tracking-tight leading-tight">
-                 Mueez Aslam <br/>
-                 <span className="text-foreground font-bold">Narejo</span>
-               </h2>
+          <FadeIn delay={0.4} className="lg:w-1/3 flex justify-center lg:justify-end">
+             <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-[2rem] bg-card border border-border flex items-center justify-center shadow-xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,transparent_70%)] rounded-[2rem]" />
+                <h2 className="text-7xl lg:text-8xl font-black text-primary font-display tracking-tighter">MN</h2>
              </div>
           </FadeIn>
         </div>
 
         {/* Proof Bar */}
-        <FadeIn delay={0.6} className="w-full mt-24 pt-12 border-t border-border/50">
+        <FadeIn delay={0.6} className="w-full mt-24 pt-10 border-t border-border">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="border-l-2 border-primary/30 pl-4">
-              <div className="text-3xl md:text-4xl font-black text-foreground mb-2">7+</div>
-              <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider leading-snug">Commercial XR<br/>titles shipped</div>
+            <div className="border-l-2 border-primary pl-4">
+              <div className="text-4xl md:text-5xl font-black text-primary mb-2 font-display">7+</div>
+              <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider leading-snug">Commercial XR<br/>titles shipped</div>
             </div>
-            <div className="border-l-2 border-primary/30 pl-4">
-              <div className="text-3xl md:text-4xl font-black text-foreground mb-2">40M+</div>
-              <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider leading-snug">Player interactions<br/>in The Final Overs</div>
+            <div className="border-l-2 border-primary pl-4">
+              <div className="text-4xl md:text-5xl font-black text-primary mb-2 font-display">40M+</div>
+              <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider leading-snug">Player interactions<br/>in The Final Overs</div>
             </div>
-            <div className="border-l-2 border-primary/30 pl-4">
-              <div className="text-3xl md:text-4xl font-black text-foreground mb-2">72-90fps</div>
-              <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider leading-snug">Quest performance<br/>maintained</div>
+            <div className="border-l-2 border-primary pl-4">
+              <div className="text-4xl md:text-5xl font-black text-primary mb-2 font-display">72-90</div>
+              <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider leading-snug">Quest FPS<br/>maintained</div>
             </div>
-            <div className="border-l-2 border-primary/30 pl-4">
-              <div className="text-3xl md:text-4xl font-black text-foreground mb-2">500+</div>
-              <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider leading-snug">Nurses trained<br/>in Medic VR</div>
+            <div className="border-l-2 border-primary pl-4">
+              <div className="text-4xl md:text-5xl font-black text-primary mb-2 font-display">500+</div>
+              <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider leading-snug">Nurses trained<br/>in Medic VR</div>
             </div>
           </div>
         </FadeIn>
