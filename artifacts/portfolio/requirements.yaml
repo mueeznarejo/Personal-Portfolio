@@ -1,0 +1,31 @@
+packages:
+  "framer-motion": "For premium page transitions, scroll animations, and interactive elements"
+  "lucide-react": "For beautiful consistent SVG icons across the portfolio"
+
+images:
+  - path: "artifacts/portfolio/public/images/hero-bg.png"
+    description: "Abstract dark cyberspace mesh with electric blue and cyan glowing lines, Unreal Engine 5 aesthetics, high-end professional VR atmosphere, subtle depth of field, very dark and moody"
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/kynetik.png"
+    description: "Abstract representation of VR combat, glowing robotic hands emitting cyan energy shields in a dark neon cyberpunk environment"
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/tfo.png"
+    description: "Abstract bright stadium lights focused on a central glowing sphere floating in the dark, atmospheric sports concept"
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/graspxr.png"
+    description: "Abstract holographic blueprint of complex industrial machinery floating in dark space with glowing blue grid lines"
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/medicvr.png"
+    description: "Abstract medical cross hologram formed by glowing blue and cyan particles floating in a dark void, futuristic enterprise tech feel"
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/knorrverse.png"
+    description: "Abstract dynamic swirling energy in vibrant colors against a dark background, playful but high-tech VR concept"
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/valleybeyond.png"
+    description: "Abstract serene low poly landscape with glowing mystical elements in a dark atmospheric setting, puzzle game concept"
+    aspect_ratio: "16:9"
+
+notes:
+  - This is a frontend-only portfolio application.
+  - Relying on static data as per instructions.
+  - Using framer-motion for all scroll reveals.
