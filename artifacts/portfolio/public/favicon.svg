@@ -1,4 +1,6 @@
-<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="180" height="180" rx="36" fill="#121212"/>
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="hsl(160, 84%, 39%)">MN</text>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="64" fill="#F5F6F2"/>
+  <rect x="24" y="24" width="208" height="208" rx="52" stroke="#D7DDD6" stroke-width="4"/>
+  <path d="M54 180V76H79L128 144L177 76H202V180H176V117L142 167H114L80 117V180H54Z" fill="#171A1C"/>
+  <path d="M144 180L187 76H212L169 180H144Z" fill="#10B981"/>
 </svg>
