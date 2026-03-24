@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Mueez Narejo - Portfolio"
+title = "Mueez Aslam - Portfolio"
 version = "1.0.0"
 id = "artifacts/portfolio"
 router = "path"

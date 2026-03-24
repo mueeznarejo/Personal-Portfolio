@@ -1,5 +1,5 @@
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Download, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -20,15 +20,39 @@ export default function Hero() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
+              <p className="text-sm sm:text-base font-mono uppercase tracking-[0.2em] text-primary mb-4">
+                Mueez Aslam • Unreal Engine Developer
+              </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-5 text-foreground font-display">
-                I ship Unreal products for games, XR, and tooling.
+                I build Unreal Engine games, VR/XR products, and gameplay systems.
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.3}>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
-                From Quest combat systems to enterprise training products and editor tooling. I focus on architecture that feels clean in development and reliable in production.
+                I'm Mueez Aslam, an Unreal Engine developer, VR developer, XR developer, and game developer focused on Meta Quest, SteamVR, UE5 gameplay architecture, optimization, and production-ready technical systems.
               </p>
+            </FadeIn>
+
+            <FadeIn delay={0.35}>
+              <div className="flex flex-wrap gap-2 mb-8 max-w-3xl">
+                {[
+                  "Unreal Engine 5",
+                  "VR Developer",
+                  "XR Developer",
+                  "Game Developer",
+                  "Meta Quest",
+                  "SteamVR",
+                  "Blueprints + C++",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-border bg-white px-3 py-1.5 text-sm font-medium text-foreground shadow-sm"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </FadeIn>
 
             <FadeIn delay={0.4}>
@@ -37,7 +61,7 @@ export default function Hero() {
                   href="mailto:mueez.narejo112@gmail.com"
                   className="px-6 py-3 rounded-lg bg-primary text-white font-semibold text-base hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-sm"
                 >
-                  Download CV <Download size={17} />
+                  Email Mueez <Mail size={17} />
                 </a>
                 <a
                   href="#projects"
@@ -69,9 +93,9 @@ export default function Hero() {
 
           {/* Profile card — hidden on mobile to save space */}
           <FadeIn delay={0.4} className="hidden lg:flex lg:w-1/3 justify-end">
-            <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-[2rem] bg-card border border-border flex items-center justify-center shadow-xl rotate-3 hover:rotate-0 transition-transform duration-500 flex-shrink-0">
+              <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-[2rem] bg-card border border-border flex items-center justify-center shadow-xl rotate-3 hover:rotate-0 transition-transform duration-500 flex-shrink-0">
               <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,transparent_70%)] rounded-[2rem]" />
-              <h2 className="text-8xl font-black text-primary font-display tracking-tighter">MN</h2>
+              <h2 className="text-8xl font-black text-primary font-display tracking-tighter">MA</h2>
             </div>
           </FadeIn>
         </div>

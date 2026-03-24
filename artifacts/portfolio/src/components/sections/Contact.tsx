@@ -10,6 +10,10 @@ export default function Contact() {
             Let's talk.
           </h2>
 
+          <p className="max-w-3xl text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10">
+            If you're hiring an Unreal Engine developer, VR developer, XR developer, gameplay programmer, or technical game developer, contact Mueez Aslam for projects in games, interactive simulations, and production-ready real-time products.
+          </p>
+
           <div className="flex flex-col sm:flex-row flex-wrap gap-4">
             <a
               href="mailto:mueez.narejo112@gmail.com"

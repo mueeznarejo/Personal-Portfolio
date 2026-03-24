@@ -88,7 +88,7 @@ export default function Projects() {
             Featured Projects
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
-            Built, shipped, and proven in production.
+            Unreal Engine work built for VR, XR, and games.
           </h2>
         </FadeIn>
       </div>

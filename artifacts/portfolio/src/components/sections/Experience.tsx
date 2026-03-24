@@ -54,7 +54,7 @@ export default function Experience() {
               Experience
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
-              Less scrolling, clearer career signal.
+              Experience across Unreal Engine, VR, XR, and game development.
             </h2>
           </div>
         </FadeIn>

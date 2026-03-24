@@ -16,7 +16,7 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border py-4 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <a href="#" className="font-display font-bold text-2xl tracking-tight text-foreground flex items-center gap-1.5">
-          Mueez <span className="text-primary">Narejo</span>
+          Mueez <span className="text-primary">Aslam</span>
         </a>
 
         {/* Desktop Nav */}

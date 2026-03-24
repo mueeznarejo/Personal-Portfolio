@@ -3,17 +3,17 @@ import { Blocks, Headset, FileCode2, Server } from "lucide-react";
 
 const categories = [
   {
-    name: "Core Dev",
+    name: "Unreal Gameplay",
     icon: <Blocks className="text-primary" size={24} />,
     skills: ["Blueprint Architecture", "Gameplay Framework", "Behavior Trees", "Actionable Elements", "UMG UI", "Data Tables"]
   },
   {
-    name: "XR Delivery",
+    name: "VR / XR Development",
     icon: <Headset className="text-primary" size={24} />,
     skills: ["Meta Quest 2/3", "OpenXR Hand Tracking", "Controller / Dual Input", "Unreal Insights"]
   },
   {
-    name: "C++ & Tooling",
+    name: "UE5 C++ & Tooling",
     icon: <FileCode2 className="text-primary" size={24} />,
     skills: ["Editor Plugins", "DataTable Driven", "Editor Panel Extensions", "A/B Tester Integration", "Utility Modules"]
   },
@@ -34,7 +34,7 @@ export default function TechStack() {
               Toolkit / Skills
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
-              Technical breadth with a clear XR center.
+              Skills for Unreal Engine, VR/XR, and technical game development.
             </h2>
           </div>
         </FadeIn>
