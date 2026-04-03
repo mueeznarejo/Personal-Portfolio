@@ -91,11 +91,20 @@ export default function Hero() {
             </FadeIn>
           </div>
 
-          {/* Profile card — hidden on mobile to save space */}
-          <FadeIn delay={0.4} className="hidden lg:flex lg:w-1/3 justify-end">
-              <div className="relative w-72 h-72 xl:w-80 xl:h-80 rounded-[2rem] bg-card border border-border flex items-center justify-center shadow-xl rotate-3 hover:rotate-0 transition-transform duration-500 flex-shrink-0">
-              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,transparent_70%)] rounded-[2rem]" />
-              <h2 className="text-8xl font-black text-primary font-display tracking-tighter">MA</h2>
+          {/* Profile portrait — hidden on mobile to save space */}
+          <FadeIn delay={0.4} className="hidden lg:flex lg:w-1/3 justify-end lg:-mt-8">
+            <div className="group relative w-72 h-80 xl:w-80 xl:h-[26rem] flex-shrink-0 transition-transform duration-500 hover:-translate-y-2 hover:rotate-[1.5deg]">
+              <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_20%_20%,hsl(var(--primary)/0.2),transparent_45%),radial-gradient(circle_at_80%_80%,hsl(var(--accent)/0.18),transparent_40%)] blur-2xl opacity-80 transition duration-500 group-hover:opacity-100" />
+              <div className="absolute -left-6 top-8 h-24 w-24 rounded-full bg-primary/12 blur-3xl transition duration-500 group-hover:bg-primary/20" />
+              <div className="absolute -right-6 bottom-10 h-28 w-28 rounded-full bg-accent/12 blur-3xl transition duration-500 group-hover:bg-accent/20" />
+              <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] shadow-[0_30px_80px_-28px_rgba(0,0,0,0.45)] ring-1 ring-black/5 transition duration-500 group-hover:shadow-[0_38px_95px_-28px_rgba(0,0,0,0.55)]">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/mueez-portrait.png`}
+                  alt="Portrait of Mueez Aslam"
+                  className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
+              </div>
             </div>
           </FadeIn>
         </div>
