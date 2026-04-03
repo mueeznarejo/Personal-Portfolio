@@ -1,4 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useVisibility } from "@/hooks/useVisibility";
+import { pickAudienceText } from "@/lib/visibility";
 
 const signals = [
   {
@@ -14,14 +16,23 @@ const signals = [
       "Led and trained junior UE5/VR developers, which signals team leverage and not just strong individual contribution.",
   },
   {
-    stat: "Games + enterprise + freelance",
+    stat: {
+      publicText: "Games + enterprise + freelance",
+      studioText: "Games + enterprise + teams",
+    },
     title: "Range without losing focus",
-    description:
-      "Worked across shipped products, freelance delivery, and team leadership while staying anchored in Unreal, VR, XR, and real-time systems.",
+    description: {
+      publicText:
+        "Worked across shipped products, freelance delivery, and team leadership while staying anchored in Unreal, VR, XR, and real-time systems.",
+      studioText:
+        "Worked across shipped products, enterprise delivery, and team leadership while staying anchored in Unreal, VR, XR, and real-time systems.",
+    },
   },
 ];
 
 export default function Signals() {
+  const { effectiveAudience } = useVisibility();
+
   return (
     <section
       id="signals"
@@ -47,13 +58,13 @@ export default function Signals() {
             <FadeIn key={item.title} delay={index * 0.06}>
               <article className="h-full rounded-[1.4rem] border border-border bg-white px-5 py-5 shadow-[0_18px_30px_-30px_rgba(15,23,42,0.24)] dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_22px_40px_-36px_rgba(0,0,0,0.78)]">
                 <div className="font-display text-xl font-black text-foreground sm:text-2xl">
-                  {item.stat}
+                  {pickAudienceText(item.stat, effectiveAudience)}
                 </div>
                 <h3 className="mt-2 text-base font-bold text-foreground">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
+                  {pickAudienceText(item.description, effectiveAudience)}
                 </p>
               </article>
             </FadeIn>

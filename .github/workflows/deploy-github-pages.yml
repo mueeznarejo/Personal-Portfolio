@@ -50,6 +50,7 @@ jobs:
         env:
           PORT: "4173"
           BASE_PATH: ${{ steps.base_path.outputs.value }}
+          VITE_VISIBILITY_API_URL: "https://portfolio-visibility-api.mueeznarejo.workers.dev"
         run: pnpm --filter @workspace/portfolio run build
 
       - name: Upload static artifact

@@ -1,6 +1,17 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useVisibility } from "@/hooks/useVisibility";
+import { isAudienceVisible, type AudienceVisibility } from "@/lib/visibility";
 
-const experiences = [
+type ExperienceEntry = {
+  audience?: AudienceVisibility;
+  role: string;
+  company: string;
+  date: string;
+  weight: "heavy" | "medium" | "light";
+  points: string[];
+};
+
+const experiences: ExperienceEntry[] = [
   {
     role: "Lead VR Developer & Team Lead",
     company: "Mixeal",
@@ -14,6 +25,7 @@ const experiences = [
     ]
   },
   {
+    audience: "public-only",
     role: "Freelance UE5 Developer",
     company: "Upwork (Remote)",
     date: "Feb – Dec 2025",
@@ -45,6 +57,8 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const { effectiveAudience } = useVisibility();
+
   return (
     <section id="experience" className="py-20 sm:py-32 bg-background relative border-t border-border">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -60,40 +74,42 @@ export default function Experience() {
         </FadeIn>
 
         <div className="relative border-l-2 border-border pl-6 sm:pl-10 md:pl-12 space-y-10 sm:space-y-14">
-          {experiences.map((exp, i) => (
-            <FadeIn key={i} delay={i * 0.1} className="relative">
-              {/* Timeline dot */}
-              <div className="absolute -left-[29px] sm:-left-[45px] md:-left-[53px] top-1.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-background border-2 border-primary shadow-[0_0_0_3px_hsl(var(--background))]" />
+          {experiences
+            .filter((exp) => isAudienceVisible(exp.audience, effectiveAudience))
+            .map((exp, i) => (
+              <FadeIn key={i} delay={i * 0.1} className="relative">
+                {/* Timeline dot */}
+                <div className="absolute -left-[29px] sm:-left-[45px] md:-left-[53px] top-1.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-background border-2 border-primary shadow-[0_0_0_3px_hsl(var(--background))]" />
 
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-12">
-                {/* Left: role info */}
-                <div>
-                  <h3 className={`font-display text-foreground mb-1 leading-tight ${
-                    exp.weight === 'heavy' ? 'text-xl sm:text-2xl font-bold' :
-                    exp.weight === 'medium' ? 'text-lg sm:text-xl font-semibold' :
-                    'text-base sm:text-lg font-medium text-muted-foreground'
-                  }`}>
-                    {exp.role}
-                  </h3>
-                  <div className={`font-semibold mb-1 text-sm sm:text-base ${exp.weight === 'light' ? 'text-muted-foreground' : 'text-primary'}`}>
-                    {exp.company}
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-3 md:gap-12">
+                  {/* Left: role info */}
+                  <div>
+                    <h3 className={`font-display text-foreground mb-1 leading-tight ${
+                      exp.weight === 'heavy' ? 'text-xl sm:text-2xl font-bold' :
+                      exp.weight === 'medium' ? 'text-lg sm:text-xl font-semibold' :
+                      'text-base sm:text-lg font-medium text-muted-foreground'
+                    }`}>
+                      {exp.role}
+                    </h3>
+                    <div className={`font-semibold mb-1 text-sm sm:text-base ${exp.weight === 'light' ? 'text-muted-foreground' : 'text-primary'}`}>
+                      {exp.company}
+                    </div>
+                    <div className="text-muted-foreground text-xs sm:text-sm font-mono">{exp.date}</div>
                   </div>
-                  <div className="text-muted-foreground text-xs sm:text-sm font-mono">{exp.date}</div>
-                </div>
 
-                {/* Right: bullet points */}
-                <ul className={`space-y-2 mt-2 md:mt-0 ${
-                  exp.weight === 'light' ? 'text-muted-foreground text-sm' : 'text-foreground/85 text-sm sm:text-base'
-                }`}>
-                  {exp.points.map((pt, j) => (
-                    <li key={j} className="flex items-start gap-2.5">
-                      <span className={`mt-1 flex-shrink-0 text-sm leading-none ${exp.weight === 'light' ? 'text-border' : 'text-primary'}`}>›</span>
-                      <span className="leading-relaxed">{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </FadeIn>
+                  {/* Right: bullet points */}
+                  <ul className={`space-y-2 mt-2 md:mt-0 ${
+                    exp.weight === 'light' ? 'text-muted-foreground text-sm' : 'text-foreground/85 text-sm sm:text-base'
+                  }`}>
+                    {exp.points.map((pt, j) => (
+                      <li key={j} className="flex items-start gap-2.5">
+                        <span className={`mt-1 flex-shrink-0 text-sm leading-none ${exp.weight === 'light' ? 'text-border' : 'text-primary'}`}>›</span>
+                        <span className="leading-relaxed">{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeIn>
           ))}
         </div>
       </div>

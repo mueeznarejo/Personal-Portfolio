@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useVisibility } from "@/hooks/useVisibility";
+import { pickAudienceText, type AudienceText } from "@/lib/visibility";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +13,7 @@ import {
 
 type Project = {
   title: string;
-  role: string;
+  role: string | AudienceText;
   date: string;
   metric: string;
   image: string;
@@ -20,7 +22,7 @@ type Project = {
   storeLabel?: string;
   problem: string;
   solution: string[];
-  outcome: string;
+  outcome: string | AudienceText;
   tags: string[];
 };
 
@@ -92,7 +94,10 @@ const projects: Project[] = [
   },
   {
     title: "The Valley Beyond",
-    role: "Freelance Developer",
+    role: {
+      publicText: "Freelance Developer",
+      studioText: "Developer",
+    },
     date: "2025 / Steam VR",
     metric: "5.0 / 5.0 rating",
     image: "valleybeyond.jpg",
@@ -104,7 +109,12 @@ const projects: Project[] = [
       "Full refactor into a component-based architecture from scratch",
       "Implemented 8 distinct puzzle types and a complete save system",
     ],
-    outcome: "5.0/5.0 rating — client cited it as \"one of the best coding experiences\" in 15 years of game dev",
+    outcome: {
+      publicText:
+        "5.0/5.0 rating — client cited it as \"one of the best coding experiences\" in 15 years of game dev",
+      studioText:
+        "5.0/5.0 rating on Steam — rebuilt the project into a scalable component architecture with strong technical delivery.",
+    },
     tags: ["Component architecture", "Puzzle systems", "Save pipeline"],
   },
 ];
@@ -197,6 +207,7 @@ function ProjectMedia({
 
 export default function Projects() {
   const [activeTrailer, setActiveTrailer] = useState<Project | null>(null);
+  const { effectiveAudience } = useVisibility();
 
   return (
     <>
@@ -223,7 +234,7 @@ export default function Projects() {
                 <div className="flex flex-col gap-5 p-6 sm:p-8 lg:w-[52%] lg:justify-center lg:p-10 xl:p-12">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 font-mono text-xs font-bold text-primary">
-                      {project.role}
+                      {pickAudienceText(project.role, effectiveAudience)}
                     </span>
                     <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                       {project.date}
@@ -272,7 +283,9 @@ export default function Projects() {
                     </div>
                     <div>
                       <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Outcome</span>
-                      <p className="font-medium leading-relaxed text-foreground">{project.outcome}</p>
+                      <p className="font-medium leading-relaxed text-foreground">
+                        {pickAudienceText(project.outcome, effectiveAudience)}
+                      </p>
                     </div>
                   </div>
 

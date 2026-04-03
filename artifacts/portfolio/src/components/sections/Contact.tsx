@@ -1,7 +1,44 @@
+import type { ReactNode } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useVisibility } from "@/hooks/useVisibility";
+import { isAudienceVisible, type AudienceVisibility } from "@/lib/visibility";
 import { ArrowUpRight, Mail, Linkedin } from "lucide-react";
 
+type ContactLink = {
+  audience?: AudienceVisibility;
+  href: string;
+  label: string;
+  external?: boolean;
+  icon: ReactNode;
+};
+
 export default function Contact() {
+  const { effectiveAudience } = useVisibility();
+  const links: ContactLink[] = [
+    {
+      href: "mailto:mueez.narejo112@gmail.com",
+      label: "mueez.narejo112@gmail.com",
+      icon: <Mail size={18} className="text-primary flex-shrink-0" />,
+    },
+    {
+      href: "https://linkedin.com/in/mueeznarejo",
+      label: "linkedin.com/in/mueeznarejo",
+      external: true,
+      icon: <Linkedin size={18} className="text-primary flex-shrink-0" />,
+    },
+    {
+      audience: "public-only",
+      href: "https://www.upwork.com/freelancers/~011f1ad9bb5a6e960c",
+      label: "Upwork Profile",
+      external: true,
+      icon: (
+        <span className="inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary/10 px-1.5 font-mono text-[10px] font-bold uppercase text-primary">
+          Up
+        </span>
+      ),
+    },
+  ];
+
   return (
     <section id="contact" className="py-20 sm:py-32 bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -15,36 +52,23 @@ export default function Contact() {
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-            <a
-              href="mailto:mueez.narejo112@gmail.com"
-              className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
-            >
-              <Mail size={18} className="text-primary flex-shrink-0" />
-              <span className="truncate">mueez.narejo112@gmail.com</span>
-            </a>
-
-            <a
-              href="https://linkedin.com/in/mueeznarejo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
-            >
-              <Linkedin size={18} className="text-primary flex-shrink-0" />
-              linkedin.com/in/mueeznarejo
-            </a>
-
-            <a
-              href="https://www.upwork.com/freelancers/~011f1ad9bb5a6e960c"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
-            >
-              <span className="inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary/10 px-1.5 font-mono text-[10px] font-bold uppercase text-primary">
-                Up
-              </span>
-              <span className="truncate">Upwork Profile</span>
-              <ArrowUpRight size={16} className="text-primary" />
-            </a>
+            {links
+              .filter((link) => isAudienceVisible(link.audience, effectiveAudience))
+              .map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
+                >
+                  {link.icon}
+                  <span className="truncate">{link.label}</span>
+                  {link.external ? (
+                    <ArrowUpRight size={16} className="text-primary" />
+                  ) : null}
+                </a>
+              ))}
           </div>
         </FadeIn>
       </div>
