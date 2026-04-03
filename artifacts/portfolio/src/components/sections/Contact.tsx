@@ -26,7 +26,7 @@ export default function Contact() {
             <a
               href="https://linkedin.com/in/mueeznarejo"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
             >
               <Linkedin size={18} className="text-primary flex-shrink-0" />
@@ -36,7 +36,7 @@ export default function Contact() {
             <a
               href="https://www.upwork.com/freelancers/~011f1ad9bb5a6e960c"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
             >
               <span className="inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary/10 px-1.5 font-mono text-[10px] font-bold uppercase text-primary">

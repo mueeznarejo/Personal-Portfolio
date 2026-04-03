@@ -72,7 +72,7 @@ export default function Hero() {
                 <a
                   href="https://linkedin.com/in/mueeznarejo"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="px-6 py-3 rounded-lg text-muted-foreground font-semibold text-base hover:text-foreground transition-all flex items-center justify-center"
                 >
                   LinkedIn ↗
@@ -99,6 +99,10 @@ export default function Hero() {
                 <img
                   src={`${import.meta.env.BASE_URL}images/mueez-portrait.png`}
                   alt="Portrait of Mueez Aslam"
+                  width={600}
+                  height={800}
+                  fetchPriority="high"
+                  decoding="async"
                   className="hero-portrait-image h-full w-full object-cover object-center transition duration-700 group-hover:scale-[1.03] dark:object-center"
                 />
                 <div className="hero-portrait-base absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/35 via-black/5 to-transparent dark:h-[32%] dark:bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.06)_24%,rgba(14,16,18,0.18)_44%,hsl(var(--card))_100%)]" />

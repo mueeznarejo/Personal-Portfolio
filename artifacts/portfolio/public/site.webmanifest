@@ -1,0 +1,18 @@
+{
+  "name": "Mueez Aslam Portfolio",
+  "short_name": "Mueez Portfolio",
+  "description": "Portfolio of Mueez Aslam, Unreal Engine developer for VR, XR, and games.",
+  "start_url": "/Personal-Portfolio/",
+  "scope": "/Personal-Portfolio/",
+  "display": "standalone",
+  "background_color": "#0f1115",
+  "theme_color": "#10B981",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+  <url>
+    <loc>https://mueeznarejo.github.io/Personal-Portfolio/</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mueeznarejo.github.io/Personal-Portfolio/opengraph.png</image:loc>
+      <image:title>Mueez Aslam portfolio social preview</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mueeznarejo.github.io/Personal-Portfolio/images/kynetik.png</image:loc>
+      <image:title>Kynetik project artwork</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mueeznarejo.github.io/Personal-Portfolio/images/tfo.png</image:loc>
+      <image:title>The Final Overs project artwork</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mueeznarejo.github.io/Personal-Portfolio/images/graspxr.png</image:loc>
+      <image:title>GraspXR project artwork</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mueeznarejo.github.io/Personal-Portfolio/images/medicvr.png</image:loc>
+      <image:title>Medic VR project artwork</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mueeznarejo.github.io/Personal-Portfolio/images/valleybeyond.jpg</image:loc>
+      <image:title>The Valley Beyond project artwork</image:title>
+    </image:image>
+  </url>
+</urlset>

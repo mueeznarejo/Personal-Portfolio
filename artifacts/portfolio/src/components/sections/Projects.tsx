@@ -142,7 +142,9 @@ function ProjectMedia({
     >
       <img
         src={`${import.meta.env.BASE_URL}images/${project.image}`}
-        alt={project.title}
+        alt={`${project.title} project artwork and gameplay preview`}
+        loading="lazy"
+        decoding="async"
         className={`absolute inset-0 h-full w-full object-cover opacity-68 transition-all duration-700 group-hover:scale-[1.02] ${
           project.video ? "group-hover:opacity-80 group-hover:lg:opacity-0" : "group-hover:opacity-78"
         }`}
@@ -242,7 +244,8 @@ export default function Projects() {
                       <a
                         href={project.storeUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
+                        aria-label={`${project.storeLabel} for ${project.title}`}
                         className="inline-flex items-center gap-2 rounded-full border border-primary/18 bg-primary/8 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-primary transition hover:border-primary/30 hover:bg-primary/12"
                       >
                         {project.storeLabel}
