@@ -1,5 +1,5 @@
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Mail, Phone, Linkedin } from "lucide-react";
+import { Mail, Linkedin } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -32,11 +32,6 @@ export default function Contact() {
               <Linkedin size={18} className="text-primary flex-shrink-0" />
               linkedin.com/in/mueeznarejo
             </a>
-
-            <div className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)]">
-              <Phone size={18} className="text-primary flex-shrink-0" />
-              +92 309 372 4514
-            </div>
           </div>
         </FadeIn>
       </div>

@@ -16,6 +16,8 @@ type Project = {
   metric: string;
   image: string;
   video?: string;
+  storeUrl?: string;
+  storeLabel?: string;
   problem: string;
   solution: string[];
   outcome: string;
@@ -30,6 +32,8 @@ const projects: Project[] = [
     metric: "72-90 FPS ON QUEST",
     image: "kynetik.png",
     video: "kynetik.mp4",
+    storeUrl: "https://www.meta.com/en-gb/experiences/kynetik/32269544462694283/",
+    storeLabel: "View on Meta Store",
     problem: "Scalable hand-tracking on Quest hardware without sacrificing performance",
     solution: [
       "Built custom pose-detection on raw Meta SDK data",
@@ -46,6 +50,8 @@ const projects: Project[] = [
     metric: "40M+ balls played",
     image: "tfo.png",
     video: "tfo.mp4",
+    storeUrl: "https://www.meta.com/experiences/final-overs-vr-cricket/3753844808017398/",
+    storeLabel: "View on Meta Store",
     problem: "Enabling natural wave gameplay and cross-platform multiplayer on mobile VR",
     solution: [
       "Architected an in-engine HTTP server for cross-platform local multiplayer",
@@ -91,6 +97,8 @@ const projects: Project[] = [
     metric: "5.0 / 5.0 rating",
     image: "valleybeyond.jpg",
     video: "valleybeyond.mp4",
+    storeUrl: "https://store.steampowered.com/app/3889780/The_Valley_Beyond/",
+    storeLabel: "View on Steam",
     problem: "Fragile legacy codebase for a live Steam VR game with no scalable architecture",
     solution: [
       "Full refactor into a component-based architecture from scratch",
@@ -228,6 +236,20 @@ export default function Projects() {
                     <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                     <span className="text-sm font-semibold text-foreground">{project.metric}</span>
                   </div>
+
+                  {project.storeUrl ? (
+                    <div>
+                      <a
+                        href={project.storeUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-primary/18 bg-primary/8 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-primary transition hover:border-primary/30 hover:bg-primary/12"
+                      >
+                        {project.storeLabel}
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    </div>
+                  ) : null}
 
                   <div className="space-y-3 text-sm lg:space-y-3.5">
                     <div>
