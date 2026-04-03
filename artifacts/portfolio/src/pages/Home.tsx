@@ -2,9 +2,12 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
+import AdditionalWork from "@/components/sections/AdditionalWork";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import InMotion from "@/components/sections/InMotion";
+import Signals from "@/components/sections/Signals";
+import TechnicalHighlights from "@/components/sections/TechnicalHighlights";
 import TechStack from "@/components/sections/TechStack";
 import Contact from "@/components/sections/Contact";
 import type { Theme } from "@/hooks/useTheme";
@@ -25,7 +28,10 @@ export default function Home({
         <Projects />
         <TechStack />
         <Experience />
+        <TechnicalHighlights />
+        <AdditionalWork />
         <InMotion />
+        <Signals />
         <Contact />
       </main>
       <Footer />
