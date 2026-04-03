@@ -42,7 +42,7 @@ export default function TechStack() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {categories.map((cat, i) => (
             <FadeIn key={i} delay={i * 0.1}>
-              <div className="bg-white border border-border p-6 sm:p-8 rounded-xl h-full shadow-sm hover:shadow-md transition-shadow">
+              <div className="h-full rounded-xl border border-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md sm:p-8 dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_22px_42px_-36px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_26px_48px_-34px_rgba(0,0,0,0.82)]">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="p-2.5 bg-primary/10 rounded-lg">
                     {cat.icon}
@@ -54,7 +54,7 @@ export default function TechStack() {
                   {cat.skills.map(skill => (
                     <span
                       key={skill}
-                      className="font-mono text-[11px] sm:text-xs px-2.5 py-1 bg-muted border border-border rounded text-muted-foreground"
+                      className="rounded border border-border bg-muted px-2.5 py-1 font-mono text-[11px] text-muted-foreground sm:text-xs dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--secondary))]"
                     >
                       {skill}
                     </span>

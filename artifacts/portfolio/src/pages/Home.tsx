@@ -6,11 +6,18 @@ import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import TechStack from "@/components/sections/TechStack";
 import Contact from "@/components/sections/Contact";
+import type { Theme } from "@/hooks/useTheme";
 
-export default function Home() {
+export default function Home({
+  theme,
+  toggleTheme,
+}: {
+  theme: Theme;
+  toggleTheme: () => void;
+}) {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />
         <About />

@@ -17,7 +17,7 @@ export default function Contact() {
           <div className="flex flex-col sm:flex-row flex-wrap gap-4">
             <a
               href="mailto:mueez.narejo112@gmail.com"
-              className="flex items-center gap-3 text-sm sm:text-base font-medium text-foreground hover:text-primary transition-colors bg-white px-5 py-4 rounded-xl border border-border shadow-sm hover:shadow-md"
+              className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
             >
               <Mail size={18} className="text-primary flex-shrink-0" />
               <span className="truncate">mueez.narejo112@gmail.com</span>
@@ -27,13 +27,13 @@ export default function Contact() {
               href="https://linkedin.com/in/mueeznarejo"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-3 text-sm sm:text-base font-medium text-foreground hover:text-primary transition-colors bg-white px-5 py-4 rounded-xl border border-border shadow-sm hover:shadow-md"
+              className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:text-primary hover:shadow-md sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)] dark:hover:shadow-[0_24px_44px_-32px_rgba(0,0,0,0.82)]"
             >
               <Linkedin size={18} className="text-primary flex-shrink-0" />
               linkedin.com/in/mueeznarejo
             </a>
 
-            <div className="flex items-center gap-3 text-sm sm:text-base font-medium text-foreground bg-white px-5 py-4 rounded-xl border border-border shadow-sm">
+            <div className="flex items-center gap-3 rounded-xl border border-border bg-white px-5 py-4 text-sm font-medium text-foreground shadow-sm sm:text-base dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--card))] dark:shadow-[0_20px_40px_-34px_rgba(0,0,0,0.8)]">
               <Phone size={18} className="text-primary flex-shrink-0" />
               +92 309 372 4514
             </div>
