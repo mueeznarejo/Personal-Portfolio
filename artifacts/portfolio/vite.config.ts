@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import fs from "fs";
 
 const rawPort = process.env.PORT;
 
@@ -27,7 +28,22 @@ if (!basePath) {
 
 export default defineConfig({
   base: basePath,
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    {
+      name: "github-pages-spa-fallback",
+      closeBundle() {
+        const outputDir = path.resolve(import.meta.dirname, "dist/public");
+        const indexHtml = path.join(outputDir, "index.html");
+        const fallbackHtml = path.join(outputDir, "404.html");
+
+        if (fs.existsSync(indexHtml)) {
+          fs.copyFileSync(indexHtml, fallbackHtml);
+        }
+      },
+    },
+  ],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),
