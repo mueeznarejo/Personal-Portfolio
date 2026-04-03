@@ -2,7 +2,12 @@ import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useVisibility } from "@/hooks/useVisibility";
-import { pickAudienceText, type AudienceText } from "@/lib/visibility";
+import {
+  isAudienceVisible,
+  pickAudienceText,
+  type AudienceText,
+  type AudienceVisibility,
+} from "@/lib/visibility";
 import {
   Dialog,
   DialogContent,
@@ -12,6 +17,7 @@ import {
 } from "@/components/ui/dialog";
 
 type Project = {
+  audience?: AudienceVisibility;
   title: string;
   role: string | AudienceText;
   date: string;
@@ -93,6 +99,7 @@ const projects: Project[] = [
     tags: ["Multi-tenant", "C++ Plugin", "Runtime branding"],
   },
   {
+    audience: "public-only",
     title: "The Valley Beyond",
     role: {
       publicText: "Freelance Developer",
@@ -208,6 +215,9 @@ function ProjectMedia({
 export default function Projects() {
   const [activeTrailer, setActiveTrailer] = useState<Project | null>(null);
   const { effectiveAudience } = useVisibility();
+  const visibleProjects = projects.filter((project) =>
+    isAudienceVisible(project.audience, effectiveAudience),
+  );
 
   return (
     <>
@@ -224,7 +234,7 @@ export default function Projects() {
         </div>
 
         <div className="mx-auto flex max-w-7xl flex-col gap-7 px-4 pb-12 sm:px-6 sm:pb-16 md:px-12 lg:gap-10">
-          {projects.map((project, i) => (
+          {visibleProjects.map((project, i) => (
             <FadeIn
               key={project.title}
               delay={i * 0.06}
@@ -304,7 +314,7 @@ export default function Projects() {
                 <ProjectMedia
                   project={project}
                   index={i}
-                  total={projects.length}
+                  total={visibleProjects.length}
                   onOpenTrailer={setActiveTrailer}
                 />
               </div>
