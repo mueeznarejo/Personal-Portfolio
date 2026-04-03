@@ -1,4 +1,5 @@
-import { ArrowUpRight, ImageIcon, Play } from "lucide-react";
+import { useRef } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ImageIcon, Play } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 type Clip = {
@@ -42,6 +43,17 @@ const clips: Clip[] = [
 ];
 
 export default function InMotion() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollByAmount = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = 320;
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section id="in-motion" className="border-t border-border bg-background py-14 sm:py-18">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -49,19 +61,44 @@ export default function InMotion() {
           <span className="block font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-primary sm:text-xs">
             Beyond The Build
           </span>
-          <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="font-display text-2xl font-black tracking-tight text-foreground sm:text-3xl">
-                A few public clips.
-              </h2>
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                Not a main portfolio section, just a small window into how some of the work shows up publicly.
-              </p>
-            </div>
+          <div className="mt-3">
+            <h2 className="font-display text-2xl font-black tracking-tight text-foreground sm:text-3xl">
+              A few public clips.
+            </h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Not a main portfolio section, just a small window into how some of the work shows up publicly.
+            </p>
           </div>
         </FadeIn>
 
-        <div className="mt-8 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-5 flex items-center justify-between gap-4">
+          <div className="text-xs font-mono uppercase tracking-[0.16em] text-muted-foreground/75">
+            Use the arrows to browse more clips
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => scrollByAmount("left")}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-card-foreground transition hover:border-primary/30 hover:text-primary"
+              aria-label="Scroll clips left"
+            >
+              <ArrowLeft size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollByAmount("right")}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-card-foreground transition hover:border-primary/30 hover:text-primary"
+              aria-label="Scroll clips right"
+            >
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="mt-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           <div className="flex w-max gap-4 pr-6">
             {clips.map((clip, index) => {
               const isReel = clip.type === "Reel";
