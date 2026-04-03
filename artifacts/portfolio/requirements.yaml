@@ -3,9 +3,6 @@ packages:
   "lucide-react": "For beautiful consistent SVG icons across the portfolio"
 
 images:
-  - path: "artifacts/portfolio/public/images/hero-bg.png"
-    description: "Abstract dark cyberspace mesh with electric blue and cyan glowing lines, Unreal Engine 5 aesthetics, high-end professional VR atmosphere, subtle depth of field, very dark and moody"
-    aspect_ratio: "16:9"
   - path: "artifacts/portfolio/public/images/kynetik.png"
     description: "Abstract representation of VR combat, glowing robotic hands emitting cyan energy shields in a dark neon cyberpunk environment"
     aspect_ratio: "16:9"
@@ -18,12 +15,12 @@ images:
   - path: "artifacts/portfolio/public/images/medicvr.png"
     description: "Abstract medical cross hologram formed by glowing blue and cyan particles floating in a dark void, futuristic enterprise tech feel"
     aspect_ratio: "16:9"
-  - path: "artifacts/portfolio/public/images/knorrverse.png"
-    description: "Abstract dynamic swirling energy in vibrant colors against a dark background, playful but high-tech VR concept"
-    aspect_ratio: "16:9"
-  - path: "artifacts/portfolio/public/images/valleybeyond.png"
+  - path: "artifacts/portfolio/public/images/valleybeyond.jpg"
     description: "Abstract serene low poly landscape with glowing mystical elements in a dark atmospheric setting, puzzle game concept"
     aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/mueez-portrait.png"
+    description: "Portrait photo of Mueez Aslam for the hero section"
+    aspect_ratio: "3:4"
 
 notes:
   - This is a frontend-only portfolio application.
