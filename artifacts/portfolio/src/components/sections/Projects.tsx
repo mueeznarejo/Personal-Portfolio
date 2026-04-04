@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useVisibility } from "@/hooks/useVisibility";
+import { isAudienceVisible, type AudienceVisibility } from "@/lib/visibility";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 
 type Project = {
+  audience?: AudienceVisibility;
   title: string;
   role: string;
   date: string;
@@ -102,6 +105,7 @@ const projects: Project[] = [
   },
   {
     title: "The Valley Beyond",
+    audience: "public-only",
     role: "Freelance Developer",
     date: "2025 / SteamVR",
     metric: "5.0 / 5.0 Upwork",
@@ -211,7 +215,10 @@ function ProjectMedia({
 
 export default function Projects() {
   const [activeTrailer, setActiveTrailer] = useState<Project | null>(null);
-  const visibleProjects = projects;
+  const { effectiveAudience } = useVisibility();
+  const visibleProjects = projects.filter((project) =>
+    isAudienceVisible(project.audience, effectiveAudience),
+  );
 
   return (
     <>
