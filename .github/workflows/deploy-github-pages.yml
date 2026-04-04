@@ -21,43 +21,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Resolve BASE_PATH
-        id: base_path
-        shell: bash
-        run: |
-          REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          if [[ "$REPO_NAME" == *.github.io ]]; then
-            echo "value=/" >> "$GITHUB_OUTPUT"
-          else
-            echo "value=/$REPO_NAME/" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Build portfolio
-        env:
-          PORT: "4173"
-          BASE_PATH: ${{ steps.base_path.outputs.value }}
-          VITE_CLOUDFLARE_ANALYTICS_TOKEN: ${{ secrets.VITE_CLOUDFLARE_ANALYTICS_TOKEN }}
-          VITE_VISIBILITY_API_URL: "https://portfolio-visibility-api.mueeznarejo.workers.dev"
-        run: pnpm --filter @workspace/portfolio run build
-
       - name: Upload static artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: artifacts/portfolio/dist/public
+          path: artifacts/pages-redirect
 
   deploy:
     environment:
