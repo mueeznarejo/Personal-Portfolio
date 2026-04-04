@@ -1,13 +1,6 @@
 import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { useVisibility } from "@/hooks/useVisibility";
-import {
-  isAudienceVisible,
-  pickAudienceText,
-  type AudienceText,
-  type AudienceVisibility,
-} from "@/lib/visibility";
 import {
   Dialog,
   DialogContent,
@@ -17,19 +10,18 @@ import {
 } from "@/components/ui/dialog";
 
 type Project = {
-  audience?: AudienceVisibility;
   title: string;
-  role: string | AudienceText;
+  role: string;
   date: string;
   metric: string;
   image: string;
   video?: string;
   storeUrl?: string;
   storeLabel?: string;
-  problem: string;
-  solution: string[];
-  outcome: string | AudienceText;
-  tags: string[];
+  description: string;
+  contributions: string[];
+  outcome: string;
+  alt: string;
 };
 
 const projects: Project[] = [
@@ -42,14 +34,16 @@ const projects: Project[] = [
     video: "kynetik.mp4",
     storeUrl: "https://www.meta.com/en-gb/experiences/kynetik/32269544462694283/",
     storeLabel: "View on Meta Store",
-    problem: "Scalable hand-tracking on Quest hardware without sacrificing performance",
-    solution: [
-      "Built custom pose-detection on raw Meta SDK data",
-      "Enemy combat system with AI-powered locomotion and ragdolls",
-      "Draw-call budgeting and Niagara baking pipeline",
+    description:
+      "Hand-tracking combat game for Meta Quest with custom pose detection, enemy AI, and boss fight mechanics built entirely from scratch.",
+    contributions: [
+      "Built the full combat system on raw Meta SDK hand tracking data with custom poses for shield, charge, and fire.",
+      "Designed three enemy AI types plus a multi-attack boss fight.",
+      "Built the performance pipeline with precaching, baked Niagara VFX, and draw-call budgeting.",
+      "Owned sprint planning, scope management, and day-to-day delivery.",
     ],
-    outcome: "Shipped on Quest with quality, performance, and sole technical ownership. Awarded royalty on net revenue.",
-    tags: ["Pose detection", "Enemy AI", "Niagara optimisation"],
+    outcome: "Shipped on Meta Quest Store. 72-90fps maintained. Awarded royalty on net revenue.",
+    alt: "Kynetik — hand tracking combat game for Meta Quest",
   },
   {
     title: "The Final Overs",
@@ -60,13 +54,16 @@ const projects: Project[] = [
     video: "tfo.mp4",
     storeUrl: "https://www.meta.com/experiences/final-overs-vr-cricket/3753844808017398/",
     storeLabel: "View on Meta Store",
-    problem: "Enabling natural wave gameplay and cross-platform multiplayer on mobile VR",
-    solution: [
-      "Architected an in-engine HTTP server for cross-platform local multiplayer",
-      "Built a real-time browser dashboard for live match data and bowler controls",
+    description:
+      "Top-rated VR cricket game on Meta Quest with cross-platform local multiplayer.",
+    contributions: [
+      "Architected local multiplayer with an HTTP server running inside UE5 through a custom C++ plugin.",
+      "Built the real-time browser dashboard showing ball tracking, player orientation, and fielder positions as the sole web app developer.",
+      "Rebuilt fielding AI with math-based decision logic for reliable ball-chase behaviour.",
+      "Integrated user profiles, match data, and rankings with the backend server.",
     ],
-    outcome: "40M+ balls played, 200K+ matches — top-rated VR cricket title on Quest",
-    tags: ["DataTable", "Animation Blueprints", "Local Multiplayer"],
+    outcome: "40M+ balls played. Top-rated VR cricket title on Quest.",
+    alt: "The Final Overs — VR cricket game on Meta Quest",
   },
   {
     title: "GraspXR",
@@ -75,14 +72,16 @@ const projects: Project[] = [
     metric: "Enterprise SDK",
     image: "graspxr.png",
     video: "graspxr.mp4",
-    problem: "Enterprise training platform needed to scale to 2000+ users without per-scenario code changes",
-    solution: [
-      "Refactored Blueprints into a modular plugin-based SDK architecture",
-      "DLC system for downloadable scenarios to reduce install size",
-      "Web portal integration for live performance monitoring",
+    description:
+      "Enterprise VR training platform for medical and industrial clients built to scale to 2000+ users without per-scenario code changes.",
+    contributions: [
+      "Architected the full base system as a modular Unreal plugin that was SDK-ready from day one.",
+      "Built the DLC architecture so scenarios could be downloaded separately and keep install size down.",
+      "Created a data-driven scenario pipeline so non-technical staff could add scenarios with data instead of code.",
+      "Integrated the web portal for live performance monitoring.",
     ],
-    outcome: "Non-technical staff could add scenarios via data alone — no code required",
-    tags: ["Modular UE5 SDK", "DLC system", "Web portal"],
+    outcome: "Non-technical staff could deploy new scenarios independently. Foundation for a future commercial SDK.",
+    alt: "GraspXR — enterprise VR training platform",
   },
   {
     title: "Medic VR",
@@ -90,39 +89,37 @@ const projects: Project[] = [
     date: "2023 / Quest",
     metric: "500+ nurses trained",
     image: "medicvr.png",
-    problem: "Hospital-ready VR training deployable across multiple clients with different branding",
-    solution: [
-      "Multi-tenant system using JSON payloads for runtime rebranding per hospital",
-      "C++ editor plugin replacing brittle enum IDs with DataTable dropdowns",
+    description:
+      "Multi-hospital VR nursing training platform live across 15+ procedural scenarios with per-client branding.",
+    contributions: [
+      "Built the multi-tenant system with JSON-driven runtime branding for each hospital across textures, logos, colors, and props.",
+      "Integrated the full web portal connection for user auth, session logging, and performance reporting.",
+      "Built a C++ editor plugin that replaced enum-based task IDs with DataTable-driven Blueprint dropdowns and removed designer friction.",
+      "Built around 10 scenarios solo from scratch and handled additional bug fixing and flow repairs.",
     ],
-    outcome: "Live across multiple hospitals — 500+ nurses trained across 15+ procedural scenarios",
-    tags: ["Multi-tenant", "C++ Plugin", "Runtime branding"],
+    outcome: "500+ nurses trained. Deployed across multiple hospitals. Client described scenario turnaround as \"shocked and impressed.\"",
+    alt: "Medic VR — multi-hospital VR nursing training",
   },
   {
-    audience: "public-only",
     title: "The Valley Beyond",
-    role: {
-      publicText: "Freelance Developer",
-      studioText: "Developer",
-    },
-    date: "2025 / Steam VR",
-    metric: "5.0 / 5.0 rating",
+    role: "Freelance Developer",
+    date: "2025 / SteamVR",
+    metric: "5.0 / 5.0 Upwork",
     image: "valleybeyond.jpg",
     video: "valleybeyond.mp4",
     storeUrl: "https://store.steampowered.com/app/3889780/The_Valley_Beyond/",
     storeLabel: "View on Steam",
-    problem: "Fragile legacy codebase for a live Steam VR game with no scalable architecture",
-    solution: [
-      "Full refactor into a component-based architecture from scratch",
-      "Implemented 8 distinct puzzle types and a complete save system",
+    description:
+      "Freelance SteamVR puzzle game — inherited a fragile legacy codebase and refactored it into a scalable, component-based architecture.",
+    contributions: [
+      "Inherited a messy legacy codebase and progressively refactored it into a component-based architecture to reduce repetition and improve Blueprint modularity.",
+      "Implemented eight distinct puzzle types, each with unique unlock logic.",
+      "Built the complete save system covering interaction state, inventory state, and puzzle completion state.",
+      "Built the pickup-and-drop inventory system, sound cue system, Geometry Scripting implementation, and resolved critical packaging issues blocking the project.",
     ],
-    outcome: {
-      publicText:
-        "5.0/5.0 rating — client cited it as \"one of the best coding experiences\" in 15 years of game dev",
-      studioText:
-        "5.0/5.0 rating on Steam — rebuilt the project into a scalable component architecture with strong technical delivery.",
-    },
-    tags: ["Component architecture", "Puzzle systems", "Save pipeline"],
+    outcome:
+      "5.0/5.0 rating on Upwork — client cited it as \"one of the best coding experiences in 15 years of game dev.\" Ongoing relationship.",
+    alt: "The Valley Beyond — SteamVR puzzle game",
   },
 ];
 
@@ -159,7 +156,7 @@ function ProjectMedia({
     >
       <img
         src={`${import.meta.env.BASE_URL}images/${project.image}`}
-        alt={`${project.title} project artwork and gameplay preview`}
+        alt={project.alt}
         loading="lazy"
         decoding="async"
         className={`absolute inset-0 h-full w-full object-cover opacity-68 transition-all duration-700 group-hover:scale-[1.02] ${
@@ -214,10 +211,7 @@ function ProjectMedia({
 
 export default function Projects() {
   const [activeTrailer, setActiveTrailer] = useState<Project | null>(null);
-  const { effectiveAudience } = useVisibility();
-  const visibleProjects = projects.filter((project) =>
-    isAudienceVisible(project.audience, effectiveAudience),
-  );
+  const visibleProjects = projects;
 
   return (
     <>
@@ -225,10 +219,10 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 pt-20 sm:pt-28 pb-10 sm:pb-14">
           <FadeIn>
             <span className="text-primary font-mono text-xs sm:text-sm uppercase font-bold tracking-widest block mb-3 sm:mb-4">
-              Featured Projects
+              Selected Projects
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
-              Unreal Engine work built for VR, XR, and games.
+              Selected Work.
             </h2>
           </FadeIn>
         </div>
@@ -244,7 +238,7 @@ export default function Projects() {
                 <div className="flex flex-col gap-5 p-6 sm:p-8 lg:w-[52%] lg:justify-center lg:p-10 xl:p-12">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 font-mono text-xs font-bold text-primary">
-                      {pickAudienceText(project.role, effectiveAudience)}
+                      {project.role}
                     </span>
                     <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                       {project.date}
@@ -275,39 +269,28 @@ export default function Projects() {
                     </div>
                   ) : null}
 
-                  <div className="space-y-3 text-sm lg:space-y-3.5">
+                  <div className="space-y-4 text-sm lg:space-y-4.5">
+                    <p className="text-sm leading-relaxed text-foreground/82 sm:text-base dark:text-foreground/78">
+                      {project.description}
+                    </p>
+
                     <div>
-                      <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Problem</span>
-                      <p className="leading-relaxed text-foreground/80 dark:text-foreground/78">{project.problem}</p>
-                    </div>
-                    <div>
-                      <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Solution</span>
-                      <ul className="space-y-1">
-                        {project.solution.map((item, idx) => (
-                          <li key={idx} className="flex gap-2 text-foreground/80 dark:text-foreground/78">
-                            <span className="flex-shrink-0 text-primary">›</span>
-                            {item}
+                      <span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                        My Role
+                      </span>
+                      <ul className="space-y-2">
+                        {project.contributions.map((item, idx) => (
+                          <li key={idx} className="flex gap-2 text-foreground/82 dark:text-foreground/78">
+                            <span className="flex-shrink-0 text-primary">-</span>
+                            <span className="leading-relaxed">{item}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div>
-                      <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Outcome</span>
-                      <p className="font-medium leading-relaxed text-foreground">
-                        {pickAudienceText(project.outcome, effectiveAudience)}
-                      </p>
-                    </div>
-                  </div>
 
-                  <div className="flex flex-wrap gap-2 border-t border-border pt-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md border border-border bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-muted-foreground lg:px-3 dark:border-[hsl(var(--border))] dark:bg-[hsl(var(--secondary))]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    <p className="border-t border-border pt-4 text-sm font-bold leading-relaxed text-foreground sm:text-base">
+                      {project.outcome}
+                    </p>
                   </div>
                 </div>
 

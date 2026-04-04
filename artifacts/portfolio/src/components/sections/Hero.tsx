@@ -21,7 +21,7 @@ export default function Hero() {
 
             <FadeIn delay={0.2}>
               <p className="text-sm sm:text-base font-mono uppercase tracking-[0.2em] text-primary mb-4">
-                Mueez Aslam • Unreal Engine Developer
+                Mueez Aslam • VR/XR Developer
               </p>
               <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-5 text-foreground font-display">
                 I build Unreal Engine games, VR/XR products, and gameplay systems.
@@ -30,16 +30,15 @@ export default function Hero() {
 
             <FadeIn delay={0.3}>
               <p className="hero-summary text-base sm:text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
-                I'm Mueez Aslam, an Unreal Engine developer, VR developer, XR developer, and game developer focused on Meta Quest, SteamVR, UE5 gameplay architecture, optimization, and production-ready technical systems.
+                I'm Mueez Aslam, a VR/XR developer and technical game developer focused on Meta Quest, SteamVR, UE5 gameplay architecture, optimization, and production-ready technical systems.
               </p>
             </FadeIn>
 
             <FadeIn delay={0.35}>
               <div className="hero-tags flex flex-wrap gap-2 mb-8 max-w-3xl">
                 {[
-                  "Unreal Engine 5",
-                  "VR Developer",
-                  "XR Developer",
+                  "UE5",
+                  "VR/XR Developer",
                   "Game Developer",
                   "Meta Quest",
                   "SteamVR",
@@ -98,7 +97,7 @@ export default function Hero() {
               <div className="hero-portrait-card relative h-full w-full overflow-hidden rounded-[2.25rem] shadow-[0_30px_80px_-28px_rgba(0,0,0,0.45)] ring-1 ring-black/5 transition duration-500 group-hover:shadow-[0_38px_95px_-28px_rgba(0,0,0,0.55)] dark:bg-[hsl(var(--card))] dark:shadow-[0_28px_72px_-26px_rgba(0,0,0,0.82)] dark:ring-[hsl(var(--border))] dark:group-hover:shadow-[0_36px_84px_-24px_rgba(0,0,0,0.86)]">
                 <img
                   src={`${import.meta.env.BASE_URL}images/mueez-portrait.png`}
-                  alt="Portrait of Mueez Aslam"
+                  alt="Mueez Aslam, Lead VR Developer"
                   width={600}
                   height={800}
                   fetchPriority="high"
@@ -116,9 +115,9 @@ export default function Hero() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {[
               { num: "7+",      label: "Commercial XR\ntitles shipped" },
-              { num: "40M+",   label: "Player interactions\nin The Final Overs" },
-              { num: "72-90", label: "Quest FPS\nmaintained" },
-              { num: "500+",  label: "Nurses trained\nin Medic VR" },
+              { num: "40M+",   label: "Balls played\nThe Final Overs" },
+              { num: "72-90", label: "FPS on Quest\nhardware" },
+              { num: "500+",  label: "Nurses trained\nacross hospitals" },
             ].map(({ num, label }) => (
               <div key={num} className="border-l-2 border-primary pl-4">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-1.5 font-display">{num}</div>

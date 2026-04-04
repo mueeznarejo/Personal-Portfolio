@@ -44,7 +44,7 @@ export default function About() {
               </span>
               <div className="mt-4">
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-muted-foreground">
-                  Mueez Aslam is an Unreal Engine developer and VR/XR game developer with 4+ years of experience shipping production Meta Quest, SteamVR, and enterprise training products.
+                  Mueez Aslam is a VR/XR developer and technical game developer with 4+ years shipping production Meta Quest, SteamVR, and enterprise training products.
                 </p>
               </div>
 

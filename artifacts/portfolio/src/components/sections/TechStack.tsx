@@ -34,7 +34,7 @@ export default function TechStack() {
               Toolkit / Skills
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tight font-display">
-              Skills for Unreal Engine, VR/XR, and technical game development.
+              Technical skills and toolkit.
             </h2>
           </div>
         </FadeIn>
