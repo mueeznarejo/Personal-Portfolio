@@ -21,3 +21,16 @@ Your site will be available at:
 - GitHub Pages provides HTTPS by default.
 - This is free and works well until you buy a domain/hosting.
 - Once you buy a domain, you can point DNS to GitHub Pages or migrate to another host.
+
+## Cloudflare Web Analytics
+
+The portfolio now supports Cloudflare Web Analytics when a token is present at
+build time.
+
+1. Create a Web Analytics site in Cloudflare for `mueeznarejo.github.io`.
+2. Copy the site token from the generated beacon snippet.
+3. In GitHub, add a repository secret named `VITE_CLOUDFLARE_ANALYTICS_TOKEN`.
+4. Re-run the GitHub Pages deployment workflow.
+
+If the secret is missing, the site still builds normally and simply skips
+loading the analytics beacon.
