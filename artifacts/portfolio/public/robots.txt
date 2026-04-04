@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mueeznarejo.github.io/Personal-Portfolio/sitemap.xml
+Sitemap: __SITE_URL__sitemap.xml

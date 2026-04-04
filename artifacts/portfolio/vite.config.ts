@@ -26,6 +26,26 @@ if (!basePath) {
   );
 }
 
+const siteOrigin = (process.env.SITE_ORIGIN ?? "https://mueeznarejo.github.io")
+  .trim()
+  .replace(/\/+$/, "");
+const siteUrl = new URL(basePath, `${siteOrigin}/`).toString();
+
+function replaceBuildTokens(filePath: string) {
+  if (!fs.existsSync(filePath)) {
+    return;
+  }
+
+  const content = fs.readFileSync(filePath, "utf8");
+  const nextContent = content
+    .replaceAll("__SITE_URL__", siteUrl)
+    .replaceAll("__BASE_PATH__", basePath);
+
+  if (nextContent !== content) {
+    fs.writeFileSync(filePath, nextContent);
+  }
+}
+
 export default defineConfig({
   base: basePath,
   plugins: [
@@ -37,6 +57,14 @@ export default defineConfig({
         const outputDir = path.resolve(import.meta.dirname, "dist/public");
         const indexHtml = path.join(outputDir, "index.html");
         const fallbackHtml = path.join(outputDir, "404.html");
+        const robotsTxt = path.join(outputDir, "robots.txt");
+        const manifestFile = path.join(outputDir, "site.webmanifest");
+        const sitemapFile = path.join(outputDir, "sitemap.xml");
+
+        replaceBuildTokens(indexHtml);
+        replaceBuildTokens(robotsTxt);
+        replaceBuildTokens(manifestFile);
+        replaceBuildTokens(sitemapFile);
 
         if (fs.existsSync(indexHtml)) {
           fs.copyFileSync(indexHtml, fallbackHtml);
