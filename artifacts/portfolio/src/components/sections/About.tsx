@@ -52,9 +52,9 @@ export default function About() {
 
               <div className="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
                 <p>
-                  As Mueez Aslam, I have led and shipped 7+ commercial Unreal Engine releases, including{" "}
+                  I have led and shipped 7+ commercial releases, including{" "}
                   <strong className="text-foreground">The Final Overs</strong>{" "}
-                  <span className="text-primary">(40M+ player interactions)</span> and{" "}
+                  <span className="text-primary">(40M+ balls played)</span> and{" "}
                   <strong className="text-foreground">Kynetik</strong>, with a focus on what modern VR hardware can achieve in real production environments.
                 </p>
                 <p>
